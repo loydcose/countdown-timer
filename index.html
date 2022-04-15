@@ -9,7 +9,14 @@
   </head>
   <body>
     <div class="container">
-      <p></p>
+      <div class="config-container">
+        <input type="number" max="24" min="0" placeholder="Hours" />
+        <span> : </span>
+        <input type="number" max="60" min="0" placeholder="Minutes" />
+        <button>Start</button>
+      </div>
+      <p class="clock"></p>
+      <span class="end-message"></span>
     </div>
 
     <script src="script.js"></script>

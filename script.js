@@ -1,23 +1,34 @@
 let p = document.querySelector("p")
+let startResetBtn = document.querySelector("button")
+let input = document.querySelectorAll("input")
+let endMessage = document.querySelector(".end-message")
 
-const initialHours = 0
-const initialMinutes = 1
+startResetBtn.addEventListener("click", () => {
+  if (input[1].value == "") return
 
-let totalSeconds = initialHours * 60 * 60 + initialMinutes * 60
+  console.log(input[0].value)
+  console.log(input[1].value)
 
-let interval = setInterval(() => {
-  let hour = Math.floor(totalSeconds / (60 * 60))
-  let minute = Math.floor((totalSeconds % (60 * 60)) / 60)
-  let second = totalSeconds % 60
+  const initialHours = input[0].value
+  const initialMinutes = input[1].value
 
-  second = second < 10 ? "0" + second : second
-  minute = minute < 10 ? "0" + minute : minute
-  hour = hour < 10 ? "0" + hour : hour
+  let totalSeconds = initialHours * 60 * 60 + initialMinutes * 60
 
-  if (minute == 0 && second == 0 && hour == 0) {
-    clearInterval(interval)
-  }
+  let interval = setInterval(() => {
+    let hour = Math.floor(totalSeconds / (60 * 60))
+    let minute = Math.floor((totalSeconds % (60 * 60)) / 60)
+    let second = totalSeconds % 60
 
-  p.innerText = `${hour}:${minute}:${second}`
-  totalSeconds--
-}, 100)
+    second = second < 10 ? "0" + second : second
+    minute = minute < 10 ? "0" + minute : minute
+    hour = hour < 10 ? "0" + hour : hour
+
+    if (minute == 0 && second == 0 && hour == 0) {
+      endMessage.innerText = "Time is up!"
+      clearInterval(interval)
+    }
+
+    p.innerText = `${hour}:${minute}:${second}`
+    totalSeconds--
+  }, 200)
+})
